@@ -1,6 +1,6 @@
 public class Field {
     private static final int SIZE = 9;
-    private static final BOX_SIZE = SIZE / 3;
+    private static final int BOX_SIZE = SIZE / 3;
 	private int[][] grid;
 
     public Field() {
@@ -34,6 +34,17 @@ public class Field {
         }
         return true;
     }
+
+	public boolean hasValidPlacement(Tile tile) {
+		for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                if (canPlace(tile, row, col)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+	}
 
     private void clearLines() {
     	boolean[] clearRow = new boolean[SIZE];
