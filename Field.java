@@ -18,7 +18,6 @@ public class Field {
             }
         }
 
-        clearLines();
         return true;
     }
 
@@ -46,7 +45,7 @@ public class Field {
         return false;
 	}
 
-    private void clearLines() {
+    public void clearLines() {
     	boolean[] clearRow = new boolean[SIZE];
         boolean[] clearCol = new boolean[SIZE];
         boolean[][] clearBox = new boolean[BOX_SIZE][BOX_SIZE];
@@ -103,11 +102,87 @@ public class Field {
 	}
 
     public void print() {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                System.out.print(grid[i][j] == 1 ? "■ " : ". ");
-            }
-            System.out.println();
-        }
+    	System.out.print("   ");
+    	for (int j = 0; j < SIZE; j++) {
+        	System.out.print(j + " ");
+    	}
+    	System.out.println();
+
+    	// Print rows with row index
+    	for (int i = 0; i < SIZE; i++) {
+        	System.out.printf("%2d ", i);  // row index, right-aligned
+        	for (int j = 0; j < SIZE; j++) {
+            	System.out.print(grid[i][j] == 1 ? "■ " : ". ");
+        	}
+        	System.out.println();
+    	}
+	}
+
+	public int getCell(int row, int col) {
+        return grid[row][col];
     }
+
+    public Field copy() {
+        Field f = new Field();
+        for (int i = 0; i < SIZE; i++) {
+            System.arraycopy(this.grid[i], 0, f.grid[i], 0, SIZE);
+        }
+        return f;
+    }
+
+    public int getScore() {
+    	int score = 0;
+
+        for (int i = 0; i < SIZE; i++) {
+            boolean fullRow = true;
+            for (int j = 0; j < SIZE; j++) {
+                if (grid[i][j] == 0) {
+                    fullRow = false;
+                    break;
+                }
+            }
+            if (fullRow) score += SIZE;
+        }
+
+        for (int j = 0; j < SIZE; j++) {
+            boolean fullCol = true;
+            for (int i = 0; i < SIZE; i++) {
+                if (grid[i][j] == 0) {
+                    fullCol = false;
+                    break;
+                }
+            }
+            if (fullCol) score += SIZE;
+        }
+
+        for (int br = 0; br < SIZE; br += 3) {
+            for (int bc = 0; bc < SIZE; bc += 3) {
+                boolean fullBlock = true;
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        if (grid[br + i][bc + j] == 0) {
+                            fullBlock = false;
+                            break;
+                        }
+                    }
+                    if (!fullBlock) break;
+                }
+                if (fullBlock) score += 9;
+            }
+        }
+
+        return score;
+	}
+
+	public int countEmptyCells() {
+		int score = 0;
+		for (int row = 0; row < SIZE; row++) {
+			for (int col = 0; col < SIZE; col++) {
+				if (grid[row][col] == 0) score++;
+			}
+		}
+		return score;
+	}
+
 }
+
