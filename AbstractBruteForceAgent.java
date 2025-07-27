@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 abstract class AbstractBruteForceAgent extends Agent {
     protected Heuristic heuristic;
+	//protected List<List<int[]>> allPermutations = generateTilePlacementOrders(3);
 
     public AbstractBruteForceAgent(Field field, Heuristic heuristic) {
         super(field);
@@ -14,9 +15,9 @@ abstract class AbstractBruteForceAgent extends Agent {
         List<int[]> bestMoves = null;
         int bestScore = 0;
 
-        List<List<int[]>> allPermutations = generateTilePlacementOrders(tiles);
+		List<List<int[]>> validPermutations = TilePlacementGenerator.generateValidCombinations(tiles, field);
 
-        for (List<int[]> moveSet : allPermutations) {
+        for (List<int[]> moveSet : validPermutations) {
 			int score = 0;
             Field simulation = field.copy();
             boolean valid = true;
@@ -26,8 +27,9 @@ abstract class AbstractBruteForceAgent extends Agent {
                 Tile tile = tiles.get(index);
                 if (simulation.canPlace(tile, row, col)) {
                     simulation.placeTile(tile, row, col);
-					score += heuristic.evaluate(simulation);
+					score += simulation.getScore();
 					simulation.clearLines();
+					score += heuristic.evaluate(simulation);
                 } else {
                     valid = false;
                     break;
@@ -45,25 +47,20 @@ abstract class AbstractBruteForceAgent extends Agent {
         return bestMoves;
     }
 
-    protected List<List<int[]>> generateTilePlacementOrders(List<Tile> tiles) {
+    protected List<List<int[]>> generateTilePlacementOrders(int numberOfTiles) {
         List<List<int[]>> result = new ArrayList<>();
-        int n = tiles.size();
 
-        for (int i = 0; i < n; i++) {
-            Tile ti = tiles.get(i);
-            if (ti == null) continue;
-            for (int ri = 0; ri <= 9 - ti.getHeight(); ri++) {
-                for (int ci = 0; ci <= 9 - ti.getWidth(); ci++) {
-                    for (int j = 0; j < n; j++) {
-                        if (j == i || tiles.get(j) == null) continue;
-                        Tile tj = tiles.get(j);
-                        for (int rj = 0; rj <= 9 - tj.getHeight(); rj++) {
-                            for (int cj = 0; cj <= 9 - tj.getWidth(); cj++) {
-                                for (int k = 0; k < n; k++) {
-                                    if (k == i || k == j || tiles.get(k) == null) continue;
-                                    Tile tk = tiles.get(k);
-                                    for (int rk = 0; rk <= 9 - tk.getHeight(); rk++) {
-                                        for (int ck = 0; ck <= 9 - tk.getWidth(); ck++) {
+        for (int i = 0; i < numberOfTiles; i++) {
+            for (int ri = 0; ri <= 8; ri++) {
+                for (int ci = 0; ci <= 8; ci++) {
+                    for (int j = 0; j < numberOfTiles; j++) {
+                        if (j == i) continue;
+                        for (int rj = 0; rj <= 8; rj++) {
+                            for (int cj = 0; cj <= 8; cj++) {
+                                for (int k = 0; k < numberOfTiles; k++) {
+                                    if (k == i || k == j) continue;
+                                    for (int rk = 0; rk <= 8; rk++) {
+                                        for (int ck = 0; ck <= 8; ck++) {
                                             List<int[]> moves = new ArrayList<>();
                                             moves.add(new int[] { i, ri, ci });
                                             moves.add(new int[] { j, rj, cj });
