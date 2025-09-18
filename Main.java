@@ -1,3 +1,5 @@
+import javax.swing.text.PlainDocument;
+
 public class Main {
     public static void main(String[] args) {
     	System.out.println("=== Random Agent Simulation ===");
@@ -24,6 +26,26 @@ public class Main {
         SimulationRunner sim4 = new SimulationRunner(emptyLinesAgent, 20);
         sim4.run();
 
+		//System.out.println("\n=== PlacementAvailability Agent Simulation ===");
+        //Field field5 = new Field();
+        //PlacementAvailabilityAgent placementAvailabilityAgent = new PlacementAvailabilityAgent(field5);
+        //SimulationRunner sim5 = new SimulationRunner(placementAvailabilityAgent, 20);
+        //sim5.run();
+
+		System.out.println("\n=== WeightedPlacementAvailability Agent Simulation ===");
+        Field field6 = new Field();
+        WeightedPlacementAvailabilityAgent weightedPlacementAvailabilityAgent = new WeightedPlacementAvailabilityAgent(field6);
+        SimulationRunner sim6 = new SimulationRunner(weightedPlacementAvailabilityAgent, 20);
+        sim6.run();
+		
+		System.out.println("\n=== CompoundHeuristic Agent Simulation ===");
+		Field field7 = new Field();
+       	CompoundHeuristic compoundHeuristic = new CompoundHeuristic();
+		compoundHeuristic.addHeuristic(new EmptyLinesHeuristic(), 0.7);
+		compoundHeuristic.addHeuristic(new PlacementAvailabilityHeuristic(TileRepository.getAllTiles()), 0.3);
+		CompoundAgent compoundAgent = new CompoundAgent(field7, compoundHeuristic);
+		SimulationRunner sim7 = new SimulationRunner(compoundAgent, 20);
+		sim7.run();
 
 	}
 }
