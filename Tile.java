@@ -22,4 +22,15 @@ public class Tile {
 		}
 		return size;
 	}
+
+	public void print() {
+		for (int i = 0; i < shape.length; i++) {
+			for (int j = 0; j < shape[i].length; j++) {
+				if (shape[i][j] == 1) System.out.print("█ ");
+				else System.out.print(". ");
+			}
+			System.out.println();
+		}
+	}
+
 } 
