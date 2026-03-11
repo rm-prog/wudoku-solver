@@ -1,3 +1,5 @@
+package woodoku.Game;
+
 public class Field {
     private static final int SIZE = 9;
     private static final int BOX_SIZE = SIZE / 3;

@@ -1,3 +1,5 @@
+package woodoku.Game;
+
 public class Tile {
     public int[][] shape;
 

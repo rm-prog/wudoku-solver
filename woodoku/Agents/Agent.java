@@ -1,7 +1,12 @@
+package woodoku.Agents;
+
+import woodoku.Game.Field;
+import woodoku.Game.Tile;
+
 import java.util.List;
 
-abstract class Agent {
-    protected Field field;
+public abstract class Agent {
+    public woodoku.Game.Field field;
 
     public Agent(Field field) {
         this.field = field;

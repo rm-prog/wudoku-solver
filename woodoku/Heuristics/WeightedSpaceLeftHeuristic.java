@@ -1,4 +1,9 @@
-class WeightedSpaceLeftHeuristic implements Heuristic {
+package woodoku.Heuristics;
+
+import woodoku.Game.Field;
+import woodoku.Heuristics.Heuristic;
+
+public class WeightedSpaceLeftHeuristic implements Heuristic {
     @Override
     public int evaluate(Field field) {
         int score = 0;

@@ -1,3 +1,8 @@
+package woodoku.Simulation;
+
+import woodoku.Game.Field;
+import woodoku.Game.Tile;
+
 import java.util.List;
 
 public class Visualizer {
@@ -26,7 +31,7 @@ public class Visualizer {
     public static void printTiles(List<Tile> tiles) {
         System.out.println("\nAvailable tiles:");
         for (int t = 0; t < tiles.size(); t++) {
-            System.out.println("Tile " + (t + 1) + ":");
+            System.out.println("woodoku.Game.Tile " + (t + 1) + ":");
             printTile(tiles.get(t));
             System.out.println();
         }

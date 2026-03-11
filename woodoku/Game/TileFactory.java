@@ -1,3 +1,8 @@
+package woodoku.Game;
+
+import woodoku.Game.Field;
+import woodoku.Game.Tile;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;

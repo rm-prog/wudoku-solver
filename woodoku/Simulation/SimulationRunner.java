@@ -1,3 +1,10 @@
+package woodoku.Simulation;
+
+import woodoku.Agents.Agent;
+import woodoku.Game.Field;
+import woodoku.Game.Tile;
+import woodoku.Game.TileFactory;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -55,7 +62,7 @@ public class SimulationRunner {
 				if (moves.size() < 3) break;
             }
 
-            System.out.println("Game " + game + " finished with score: " + gameScore);
+            System.out.println("woodoku.Game.Game " + game + " finished with score: " + gameScore);
             scores.add(gameScore);
             totalScore += gameScore;
             maxScore = Math.max(maxScore, gameScore);

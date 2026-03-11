@@ -1,11 +1,17 @@
+package woodoku.Agents;
+
 import java.util.List;
 import java.util.ArrayList;
+import woodoku.Game.Field;
+import woodoku.Game.Tile;
+import woodoku.Game.TilePlacementGenerator;
+import woodoku.Heuristics.Heuristic;
 
 abstract class AbstractBruteForceAgent extends Agent {
     protected Heuristic heuristic;
 	//protected List<List<int[]>> allPermutations = generateTilePlacementOrders(3);
 
-    public AbstractBruteForceAgent(Field field, Heuristic heuristic) {
+    public AbstractBruteForceAgent(woodoku.Game.Field field, Heuristic heuristic) {
         super(field);
         this.heuristic = heuristic;
     }

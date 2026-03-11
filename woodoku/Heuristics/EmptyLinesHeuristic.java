@@ -1,3 +1,7 @@
+package woodoku.Heuristics;
+
+import woodoku.Game.Field;
+
 public class EmptyLinesHeuristic implements Heuristic {
     @Override
     public int evaluate(Field field) {

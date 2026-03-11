@@ -1,6 +1,11 @@
+package woodoku.Agents;
+
+import woodoku.Game.Field;
+import woodoku.Game.Tile;
+
 import java.util.*;
 
-class RandomAgent extends Agent {
+public class RandomAgent extends Agent {
     private Random random = new Random();
 
     public RandomAgent(Field field) {

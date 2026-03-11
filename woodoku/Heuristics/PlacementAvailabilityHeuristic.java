@@ -1,6 +1,12 @@
+package woodoku.Heuristics;
+
+import woodoku.Game.Field;
+import woodoku.Game.Tile;
+import woodoku.Heuristics.Heuristic;
+
 import java.util.List;
 
-class PlacementAvailabilityHeuristic implements Heuristic {
+public class PlacementAvailabilityHeuristic implements Heuristic {
     private final List<Tile> allTiles;
 
     public PlacementAvailabilityHeuristic(List<Tile> allTiles) {

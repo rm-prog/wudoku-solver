@@ -1,6 +1,10 @@
+package woodoku.Heuristics;
+
+import woodoku.Game.Field;
+
 import java.util.*;
 
-class CompoundHeuristic implements Heuristic {
+public class CompoundHeuristic implements Heuristic {
     private final List<Heuristic> heuristics = new ArrayList<>();
     private final List<Double> weights = new ArrayList<>();
 

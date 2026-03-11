@@ -1,3 +1,9 @@
+package woodoku.Heuristics;
+
+import woodoku.Game.Field;
+import woodoku.Game.Tile;
+import woodoku.Heuristics.Heuristic;
+
 import java.util.List;
 
 class WeightedPlacementAvailabilityHeuristic implements Heuristic {
