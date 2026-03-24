@@ -62,7 +62,7 @@ public class SimulationRunner {
 				if (moves.size() < 3) break;
             }
 
-            System.out.println("woodoku.Game.Game " + game + " finished with score: " + gameScore);
+            System.out.println("Game " + game + " finished with score: " + gameScore);
             scores.add(gameScore);
             totalScore += gameScore;
             maxScore = Math.max(maxScore, gameScore);
@@ -127,4 +127,3 @@ public class SimulationRunner {
     }
 
 }
-
